@@ -534,6 +534,39 @@ while($ob = $res->GetNextElement()):?>
          <?endforeach;?>
          </ul> -->
 
-
+45 Получение элементов доп.полей
+	  $resSection = CIBlockSection::GetList(
+                Array(),
+                Array('IBLOCK_ID'=>$arParams["IBLOCK_ID"],'CODE'=>$arResult["VARIABLES"]["SECTION_CODE"]),
+                false,
+                Array(
+                    'NAME',
+                    'UF_GRUZ',
+                    'PICTURE',
+                    'UF_OBEM',
+                    'UF_SPEED',
+                    'UF_BLOCK_1',
+                    'UF_PRICE_TOP',
+                    'UF_HEAD_2',
+                    'UF_BLOCK_2',
+                    'UF_HEAD_3',
+                    'UF_BLOCK_3',
+                    'UF_HEAD_4',
+                    'UF_BLOCK_4',
+                    'UF_HEAD_5',
+                    'UF_BLOCK_5',
+                    'UF_PRICE',
+                    'UF_SLIDER',
+                    'UF_PREIMUSHESTVA',
+                    'UF_H2_FCR',
+					'PRICE_H',
+                    'UF_PRICETABLE2',
+                    'UF_PRICETABLE2_TITLE',
+                    'UF_PRICETABLE3_TITLE',
+                    'UF_PRICETABLE3',
+                )
+            )->fetch();
+            
+            $subSections = CIBlockSection::GetCount(Array("SECTION_ID"=>$arParams['ID']));
 </body>
 </html>
