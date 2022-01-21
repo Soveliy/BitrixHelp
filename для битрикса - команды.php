@@ -533,8 +533,10 @@ while($ob = $res->GetNextElement()):?>
          <li><a href=''><?=$arProps["DEF_PRICE"];?></a></li>
          <?endforeach;?>
          </ul> -->
+         ?>
 
 45 Получение элементов доп.полей
+<?
 	  $resSection = CIBlockSection::GetList(
                 Array(),
                 Array('IBLOCK_ID'=>$arParams["IBLOCK_ID"],'CODE'=>$arResult["VARIABLES"]["SECTION_CODE"]),
@@ -567,6 +569,26 @@ while($ob = $res->GetNextElement()):?>
                 )
             )->fetch();
             
-            $subSections = CIBlockSection::GetCount(Array("SECTION_ID"=>$arParams['ID']));
+            $subSections = CIBlockSection::GetCount(Array("SECTION_ID"=>$arParams['ID'])); ?>
+
+
+            46  Фикс lazyload 
+            			
+			<!-- Когда картинки все равно видны в pagespeed в правках используем этот способ для первых элементов на страницах а в инициализации lazyload играемся с параметром  delay -->
+			<!-- Например
+				$(document).ready(function(){$(function(){$(".lazy").lazy({visibleOnly:!0,effect:"fadeIn",delay:2600,threshold:0,})})})
+				-->
+			<? $counter_elem = 0;?>
+			<?foreach($arResult["ITEMS"] as $arItem):?>
+				<?if ($arItem['PROPERTIES']['ATTR_LINK']['VALUE']) :?>
+				<a class='top-slide' id="<?=$this->GetEditAreaId($arItem['ID'])?>" href="<?=$arItem['PROPERTIES']['ATTR_LINK']['VALUE']?>">
+					<img   <?if($counter_elem == 0){?><?}else{?>class="lazy"<?}?>  <?if($counter_elem == 0){?>src<?}else{?>data-src<?}?>="<?=$arItem['PREVIEW_PICTURE']['SRC']?>">
+      			</a>
+				<?else :?>
+				<?endif?>
+				<?$counter_elem = $counter_elem + 1;?>
+			<?endforeach?>	
+
+
 </body>
 </html>
