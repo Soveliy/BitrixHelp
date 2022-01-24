@@ -588,7 +588,9 @@ while($ob = $res->GetNextElement()):?>
 				<?endif?>
 				<?$counter_elem = $counter_elem + 1;?>
 			<?endforeach?>	
-
+	47 Если нет доступа к настройкам php на хостинге, а бэкап не разрешает делать - комменируем данные строчки в restore.php (1247-1248)
+		// if ($mb_overload_value > 0)
+		// 	$strErrMsg = getMsg('FUNC_OVERLOAD_ERROR').'<br><br>'.$strErrMsg;
 
 </body>
 </html>
