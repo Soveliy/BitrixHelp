@@ -592,5 +592,17 @@ while($ob = $res->GetNextElement()):?>
 		// if ($mb_overload_value > 0)
 		// 	$strErrMsg = getMsg('FUNC_OVERLOAD_ERROR').'<br><br>'.$strErrMsg;
 
+
+	48 Современное подключение скриптов и стилей
+	use Bitrix\Main\Page\Asset;
+
+	// Для подключения css
+	Asset::getInstance()->addCss("/bitrix/css/main/bootstrap.min.css");
+	
+	// Для подключения скриптов
+	Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/myscripts.js");
+	
+	// Подключение мета тегов или сторонних файлов
+	Asset::getInstance()->addString("<link rel='shortcut icon' href='/local/images/favicon.ico' />");
 </body>
 </html>
