@@ -604,5 +604,14 @@ while($ob = $res->GetNextElement()):?>
 	
 	// Подключение мета тегов или сторонних файлов
 	Asset::getInstance()->addString("<link rel='shortcut icon' href='/local/images/favicon.ico' />");
+
+	49 Вывод редактирования и удаления у элементов инфоблока
+	<?
+			$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
+			$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
+	?>
+	<p id="<?=$this->GetEditAreaId($arItem['ID']);?>">
+				<?=$arItem['PREVIEW_TEXT']?>
+            </p>
 </body>
 </html>
