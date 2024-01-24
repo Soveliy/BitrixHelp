@@ -613,5 +613,7 @@ while($ob = $res->GetNextElement()):?>
 	<p id="<?=$this->GetEditAreaId($arItem['ID']);?>">
 				<?=$arItem['PREVIEW_TEXT']?>
             </p>
+
+	50. Подробная документация
 </body>
 </html>
